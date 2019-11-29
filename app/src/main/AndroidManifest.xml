@@ -32,6 +32,10 @@
             android:name=".doctorlogin"
             android:label="@string/title_activity_doctorlogin"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".registerdoctor"
+            android:label="@string/title_activity_registerdoctor"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
