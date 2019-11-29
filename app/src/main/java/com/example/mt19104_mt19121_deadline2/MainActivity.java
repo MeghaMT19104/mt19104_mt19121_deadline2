@@ -23,4 +23,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,receptionlogin.class);
         startActivity(intent);
     }
+
+    public void loginpatient(View view) {
+        Intent intent = new Intent(this,patientlogin.class);
+        startActivity(intent);
+    }
+
+    public void loginadmin(View view) {
+        Intent intent = new Intent(this,adminlogin.class);
+        startActivity(intent);
+    }
 }

@@ -14,7 +14,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="WELCOME TO PATIENT BILLING SYSTEM"
+            android:text="WELCOME"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -27,7 +27,7 @@
             android:gravity="center"
             android:orientation="vertical">
             <Button
-                android:id="@+id/adminlogin"
+                android:id="@+id/docreg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/login_layout"
@@ -35,16 +35,16 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:gravity="center"
-                android:onClick="loginadmin"
+                android:onClick="registerdoctor"
                 android:padding="5dp"
 
-                android:text="PATIENT"
+                android:text="REGISTER DOCTORS"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
 
             <Button
-                android:id="@+id/doctorlogin"
+                android:id="@+id/patreg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/login_layout"
@@ -52,14 +52,14 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:gravity="center"
-                android:onClick="logindoctor"
+                android:onClick="registerpatient"
                 android:padding="5dp"
 
-                android:text="DOCTOR"
+                android:text="REGISTER PATIENT"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
             <Button
-                android:id="@+id/patientlogin"
+                android:id="@+id/viewdoc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/login_layout"
@@ -67,16 +67,23 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:gravity="center"
-                android:onClick="loginpatient"
+                android:onClick="viewdoclist"
                 android:padding="5dp"
 
-                android:text="PATIENT"
+                android:text="VIEW DOCTOR LIST"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/doclistspinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:layout_gravity="center_horizontal"
+                android:visibility="visible" />
 
 
             <Button
-                android:id="@+id/receptionlogin"
+                android:id="@+id/viewpat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/login_layout"
@@ -84,9 +91,31 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:gravity="center"
-                android:onClick="loginreceptionist"
+                android:onClick="viewpatlist"
                 android:padding="5dp"
-                android:text="RECEPTIONIST"
+                android:text="VIEW PATIENT LIST"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/patientlistspinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:layout_gravity="center_horizontal"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/adminlogout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/login_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:onClick="logout"
+                android:padding="5dp"
+                android:text="LOGOUT"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
         </LinearLayout>
