@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "742578837410",
+    "firebase_url": "https://patient-billing-system.firebaseio.com",
+    "project_id": "patient-billing-system",
+    "storage_bucket": "patient-billing-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:742578837410:android:7f946dd9eb44065183c4fb",
+        "android_client_info": {
+          "package_name": "com.example.mt19104_mt19121_deadline2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "742578837410-3v6sihas3kf5tvfn613obsj1ht4d86nu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mt19104_mt19121_deadline2",
+            "certificate_hash": "392b1a54a172e8d7feeef38fac37715925ec0ceb"
+          }
+        },
+        {
+          "client_id": "742578837410-v70qejl5qejidh00u1kc2b535ughbol6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzEATp0PdjIsFJXU6LIrtz-F9_QQMBom0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "742578837410-v70qejl5qejidh00u1kc2b535ughbol6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
