@@ -16,12 +16,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".doctor"></activity>
         <activity android:name=".admin" />
         <activity android:name=".adminlogin" />
         <activity android:name=".patientlogin" />
         <activity android:name=".patient" />
         <activity android:name=".receptionist" />
-
         <activity
             android:name=".receptionlogin"
             android:label="@string/title_activity_receptionlogin"
@@ -29,10 +29,6 @@
         <activity
             android:name=".doctorlogin"
             android:label="@string/title_activity_doctorlogin"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".treatment"
-            android:label="@string/title_activity_doctor"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".registerdoctor"

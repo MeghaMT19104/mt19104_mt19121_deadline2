@@ -37,10 +37,22 @@
             android:text="Start Treatment"
             />
         <TextView
+            android:id="@+id/medsel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Select Medicines to prescribe."
             android:visibility="gone"/>
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:id="@+id/me_list"
+            android:visibility="gone"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter medecines"
+            android:visibility="gone"
+            android:id="@+id/e_med"/>
         <androidx.appcompat.widget.AppCompatSpinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,10 +60,22 @@
             android:layout_gravity="center_horizontal"
             android:visibility="gone"/>
         <TextView
+            android:id="@+id/testsel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Select Tests to prescribe."
             android:visibility="gone"/>
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:id="@+id/te_list"
+            android:visibility="gone"></ListView>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Tests"
+            android:visibility="gone"
+            android:id="@+id/e_test"/>
         <androidx.appcompat.widget.AppCompatSpinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,7 +86,9 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Prescribe Medicine"/>
+            android:text="Prescribe Medicine"
+            android:id="@+id/pre_med"
+            android:visibility="gone"/>
     </LinearLayout>
 
 

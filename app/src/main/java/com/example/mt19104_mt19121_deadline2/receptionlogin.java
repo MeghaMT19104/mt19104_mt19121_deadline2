@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
+import android.widget.TextView;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;

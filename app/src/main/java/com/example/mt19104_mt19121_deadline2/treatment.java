@@ -1,9 +1,6 @@
 package com.example.mt19104_mt19121_deadline2;
 
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -13,10 +10,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class treatment extends AppCompatActivity {
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_doctor);}
+public class treatment {
     private ArrayList<String> med_list = new ArrayList<String>();
     private ArrayList<String> price = new ArrayList<String>();
     private ArrayList<String> test = new ArrayList<String>();
@@ -27,9 +21,11 @@ public class treatment extends AppCompatActivity {
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int i = 0;
                 for(DataSnapshot da : dataSnapshot.getChildren()){
-                    String med_name =  da.getKey().toString();
+                    String med_name =  i+" : "+da.getKey().toString();
                     temp.add(med_name);
+                    i++;
                 }
             }
 
@@ -66,9 +62,11 @@ public class treatment extends AppCompatActivity {
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int i=0;
                 for(DataSnapshot da : dataSnapshot.getChildren()){
-                   String med_name =  da.getKey().toString();
-                   temp.add(med_name);
+                    String med_name = i+" : "+da.getKey().toString();
+                    temp.add(med_name);
+                    i++;
                 }
             }
 
@@ -79,7 +77,7 @@ public class treatment extends AppCompatActivity {
         });
         return temp;
     }
-    public ArrayList<String> getPrice(){
+    public static ArrayList<String> getPrice(){
         final ArrayList<String > temp = new ArrayList<>();
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("medicine");
         db.addValueEventListener(new ValueEventListener() {
@@ -99,17 +97,4 @@ public class treatment extends AppCompatActivity {
         return temp;
     }
 
-
 }
-class doctor extends treatment {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_doctor);
-
-    }
-
-
-}
-
