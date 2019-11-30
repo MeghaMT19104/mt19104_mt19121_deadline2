@@ -68,7 +68,7 @@ public class doctorlogin extends AppCompatActivity {
                 if(task.isSuccessful())
                 {
                     finish();
-                    Intent intent=new Intent(doctorlogin.this,doctor.class);
+                    Intent intent=new Intent(doctorlogin.this,treatment.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     userloggedin=true;
                     startActivity(intent);

@@ -44,21 +44,6 @@
 
 
             <Button
-                android:id="@+id/patreg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/login_layout"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:gravity="center"
-                android:onClick="registerpatient"
-                android:padding="5dp"
-
-                android:text="REGISTER PATIENT"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-            <Button
                 android:id="@+id/viewdoc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
