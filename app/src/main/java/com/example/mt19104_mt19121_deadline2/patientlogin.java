@@ -69,7 +69,7 @@ public class patientlogin extends AppCompatActivity {
                 if(task.isSuccessful())
                 {
                     finish();
-                    Intent intent=new Intent(patientlogin.this,receptionist.class);
+                    Intent intent=new Intent(patientlogin.this,patient.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     userloggedin=true;
                     startActivity(intent);

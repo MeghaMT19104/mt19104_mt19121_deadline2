@@ -15,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,17 +34,46 @@ public class receptionist extends AppCompatActivity {
     private DatabaseReference mDatabase,mDatabase1;
     final String[] names = new String[10];
     final String[] u_ids = new String[10];
+    final String[] count = new String[1];
+    final String[] wards = new String[3];
+
+    public void rem(DatabaseReference db,ValueEventListener v){
+        db.removeEventListener(v);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         fd=FirebaseDatabase.getInstance();
         mDatabase1=fd.getReference("users").child("doctor");
+        mDatabase = fd.getReference().child("ward");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receptionist);
         e1= (EditText) findViewById(R.id.symptom);
         e2= (EditText) findViewById(R.id.pname);
         e3= (EditText) findViewById(R.id.age);
-        e4= (EditText) findViewById(R.id.wardedit);
+
         mAuth = FirebaseAuth.getInstance();
+
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int i = 0;
+                for(DataSnapshot da: dataSnapshot.getChildren()){
+                    wards[i] = da.getKey()+" : "+da.child("costperday").getValue().toString();
+                    i++;
+                }
+                sp = findViewById(R.id.ward_sp);
+                ArrayAdapter<String> spinnerE = new ArrayAdapter<String>(c, R.layout.spinner, wards);
+                spinnerE.setDropDownViewResource(R.layout.spinner);
+                sp.setAdapter(spinnerE);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         sp= findViewById(R.id.Departmentspinner);
         String[] session = new String[]{
                 "gynae",
@@ -68,13 +99,12 @@ public class receptionist extends AppCompatActivity {
                 final String a= sp.getSelectedItem().toString();
 
 
-                mDatabase1.addValueEventListener(new ValueEventListener() {
+                ValueEventListener vl = mDatabase1.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         int i=0;
                         for(DataSnapshot da:dataSnapshot.getChildren())
                         {
-                            Log.d("dekho",da.getKey());
                             if(da.child("department").getValue().toString().equals(a))
                             {
                                 names[i]= da.child("username").getValue().toString();
@@ -102,20 +132,96 @@ public class receptionist extends AppCompatActivity {
                     }
                 });
 
+
             }
         });
         b2 = findViewById(R.id.addpat);
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                final String[] us = new String[1];
                 String symp = e1.getText().toString();
-                String pn = e2.getText().toString();
+                final String pn = e2.getText().toString();
                 String page = e3.getText().toString();
-                String wardtype = e4.getText().toString();
+                sp = findViewById(R.id.ward_sp);
+                String wardtype = sp.getSelectedItem().toString();
                 sp = findViewById(R.id.doctorspinner);
                 String doca = sp.getSelectedItem().toString();
+                e4 = findViewById(R.id.stay_d);
+                String stay_days = e4.getText().toString();
+                int pintage;
 
-                String id = pn.concat("_");
+                if (symp.isEmpty()) {
+                    e1.setError("symptom are required");
+                    e1.requestFocus();
+                    return;
+                }
+                if(symp.matches("^[0-9]*$"))
+                {
+                    e1.setError("Enter only alphabets");
+                    e1.requestFocus();
+                    //    Credentials = true;
+                    return;
+                }
+                if (pn.isEmpty()) {
+                    e2.setError("name is required");
+                    e2.requestFocus();
+                    return;
+                }
+                if(pn.matches("^[0-9]*$"))
+                {
+                    e2.setError("Enter only alphabets");
+                    e2.requestFocus();
+                    //    Credentials = true;
+                    return;
+                }
+
+                if (page.isEmpty()) {
+                    e3.setError("Enter patient age");
+
+                    e3.requestFocus();
+                    return;
+                }
+
+                if(page.matches("^[a-zA-Z]*$"))
+                {
+                    e3.setError("Enter only numeric");
+                    e3.requestFocus();
+                    //    Credentials = true;
+                    return;
+                }
+                else {
+                    pintage = Integer.parseInt(page);
+                }
+                if(pintage>120)
+                {
+                    e3.setError(" age cant be greater than 120");
+                    e3.requestFocus();
+                    return;
+                }
+                if(pintage<0)
+                {
+                    e3.setError(" age cant be negative");
+                    e3.requestFocus();
+                    return;
+                }
+
+
+
+                if (wardtype.isEmpty()) {
+                    e4.setError("ward cant be empty");
+                    e4.requestFocus();
+                    return;
+                }
+                if(wardtype.matches("^[0-9]*$"))
+                {
+                    e4.setError("Enter only alphabets");
+                    e4.requestFocus();
+                    //    Credentials = true;
+                    return;
+                }
+                String id = pn.toLowerCase().concat("_");
                 id = id.concat(page);
                 String em = id.concat("@gmail.com");
                 String pas = id;
@@ -124,16 +230,27 @@ public class receptionist extends AppCompatActivity {
                 fk.child("Symptoms").setValue(symp);
                 fk.child("Age").setValue(page);
                 fk.child("ward").setValue(wardtype);
+                fk.child("Num_days_stay").setValue(stay_days);
                 fk.child("Doctor_assigned").setValue(doca);
                 fk.child("Email").setValue(em);
                 fk.child("password").setValue(pas);
                 for(int i = 0;i<names.length;i++){
                     if(doca.equals(names[i])){
-                        FirebaseDatabase.getInstance().getReference().child("users").child("doctor").child(u_ids[i]).child("Assigned_Patients").setValue(pn);
+                        us[0] = u_ids[i];
+
                     }
                 }
+
                 mAuth.createUserWithEmailAndPassword(em,pas);
+
                 Toast.makeText(c, "Patient Got Registered", Toast.LENGTH_SHORT).show();
+                String no = "Patient_".concat(id);
+                FirebaseDatabase.getInstance().getReference().child("users").child("doctor").child(us[0]).child("Assigned_Patients").child(no).setValue(pn);
+
+
+
+
+
             }
         });
     }

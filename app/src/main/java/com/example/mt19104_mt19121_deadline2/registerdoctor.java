@@ -33,7 +33,7 @@ public class registerdoctor extends AppCompatActivity implements View.OnClickLis
         editPassword_Register = (EditText) findViewById(R.id.password);
         editConfirmpassword = (EditText) findViewById(R.id.confirm);
         editEmail_Register = (EditText) findViewById(R.id.email);
-         dep1=(EditText) findViewById(R.id.dep);
+        dep1=(EditText) findViewById(R.id.dep);
         mAuth = FirebaseAuth.getInstance();
         findViewById(R.id.button_submit).setOnClickListener(this);
         findViewById(R.id.button_cancel).setOnClickListener(this);
@@ -52,15 +52,18 @@ public class registerdoctor extends AppCompatActivity implements View.OnClickLis
         //  while (!Credentials)
         // {
 
-        if (Email_Register.isEmpty()) {
-            editEmail_Register.setError("Email is required");
-            editEmail_Register.requestFocus();
+        if (Username.isEmpty()) {
+            editUsername.setError("Email is required");
+            editUsername.requestFocus();
             return;
 
         }
-        if (!Patterns.EMAIL_ADDRESS.matcher(Email_Register).matches()) {
-            editEmail_Register.setError("Enter valid emailid");
-            editEmail_Register.requestFocus();
+
+        if(Username.matches("^[0-9]*$"))
+        {
+            editUsername.setError("Enter only alphabets");
+            editUsername.requestFocus();
+            //    Credentials = true;
             return;
         }
         if (Password_Register.isEmpty()) {
@@ -69,6 +72,7 @@ public class registerdoctor extends AppCompatActivity implements View.OnClickLis
             //    Credentials = true;
             return;
         }
+
         if (Password_Register.length() < 6) {
             editPassword_Register.setError("Minimun length of password is 6");
             editPassword_Register.requestFocus();
@@ -87,6 +91,31 @@ public class registerdoctor extends AppCompatActivity implements View.OnClickLis
             //  Credentials = true;
             return;
         }
+        if (Email_Register.isEmpty()) {
+            editEmail_Register.setError("Email is required");
+            editEmail_Register.requestFocus();
+            return;
+
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(Email_Register).matches()) {
+            editEmail_Register.setError("Enter valid emailid");
+            editEmail_Register.requestFocus();
+            return;
+        }
+        if (depart.isEmpty()) {
+            dep1.setError("Email is required");
+            dep1.requestFocus();
+            return;
+
+        }
+        if(depart.matches("^[0-9]*$"))
+        {
+            dep1.setError("Enter only alphabets");
+            dep1.requestFocus();
+            //    Credentials = true;
+            return;
+        }
+
 
 
         mAuth.createUserWithEmailAndPassword(Email_Register,Password_Register).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

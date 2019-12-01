@@ -1,6 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/pic2"
 
     android:padding="20dp" >
     <LinearLayout
@@ -58,13 +59,15 @@
                 android:text="VIEW DOCTOR LIST"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
+
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/doclistspinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/black"
                 android:layout_gravity="center_horizontal"
-                android:visibility="visible" />
+                android:gravity="center_horizontal"
+                android:visibility="gone" />
 
 
             <Button
@@ -87,7 +90,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/black"
                 android:layout_gravity="center_horizontal"
-                android:visibility="visible" />
+                android:gravity="center_horizontal"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/adminlogout"
